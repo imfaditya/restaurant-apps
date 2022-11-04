@@ -1,0 +1,126 @@
+@media screen and (min-width: 768px) {
+  /* App Bar */
+  app-bar, footer-bar, .heros-text, .detail__content, .detail__review, .detail__menus , .detail__input-review {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+  .header__hamburger-wrapper {
+    display: none;
+  }
+
+  .nav {
+    position: unset;
+    background-color: unset;
+    transform: translate(0, 0);
+  }
+
+  .nav__list {
+    display: flex;
+    justify-content: end;
+    margin-top: 5px;
+  }
+  /* End App Bar */
+
+  /* Restaurant List */
+  .restaurant-list {
+    padding: 0 20px;
+    grid-template-columns: 1fr 1fr;
+  }
+  /* End Restaurant List */
+
+  /* Favorite Food */
+  .favorite-food-item {
+    grid-template-columns: 1fr 1fr;
+    margin: 20px 40px 40px 40px;
+  }
+
+  .favorite-food-item section {
+    margin: 0 20px;
+  }
+
+  .fav-food__content-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .fav-food__image-wrapper {
+    display: flex;
+    justify-content: end;
+  }
+
+  .fav-food__image-wrapper img {
+    margin: 0;
+  }
+  /* End Favorite Food */
+
+  /* Footer */
+  footer-bar {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer__social-media{
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  /* End Footer */
+
+  /* Detail */
+  .detail__content {
+    margin: 30px 40px;
+  }
+
+  .detail__location {
+    margin-top: 0;
+  }
+
+  .detail__menus, .detail__review, .detail__input-review{
+    margin-left: 40px;
+    margin-right: 40px;
+  }
+  /* End Detail */
+}
+
+@media screen and (min-width: 1024px) {
+  /* Restaurant List */
+  .restaurant-list {
+    padding: 0 40px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  /* End Restaurant List */
+
+  /* Favorite Food */
+  favorite-food img {
+    width: 400px;
+  }
+  /* End Favorite Food */
+
+  /* Detail */
+  .detail {
+    margin-top: 45px;
+  }
+
+  .detail__image {
+    width: 700px;
+    margin: auto;
+    margin-bottom: 40px;
+    display: block;
+    border-radius: 20px;
+  }
+  /* End Detail */
+}
+
+@media screen and (min-width: 1200px) {
+  app-bar, .restaurant-list, footer-bar, .heros-text, .detail__content, .detail__review, .detail__menus, .detail__input-review {
+    width: 1300px;
+    margin: auto;
+  }
+
+  /* Heros */
+  .heros-image {
+    min-width: 1000px;
+    background-position-y: -300px;
+  }
+  /* End Heros */
+}

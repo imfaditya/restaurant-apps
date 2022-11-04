@@ -2,6 +2,8 @@ const path = require('path');
 const WebpackFavicons = require('webpack-favicons');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -34,8 +36,8 @@ module.exports = {
       background: '#000',
       theme_color: '#000',
       icons: {
-        favicons: true
-      }
+        favicons: true,
+      },
     }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -48,6 +50,28 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/'),
         },
       ],
+    }),
+    new WebpackPwaManifest({
+      publicPath: '.',
+      filename: 'app.webmanifest',
+      id: 'eat-yuk-v1',
+      start_url: './index.html',
+      name: 'Eat Yuk',
+      short_name: 'EatYuk',
+      description: 'The Best Restaurant Recommendation in Town',
+      display: 'standalone',
+      background_color: '#ffffff',
+      theme_color: '#ff7300',
+      crossorigin: 'use-credentials',
+      icons: [
+        {
+          src: path.resolve(__dirname, 'src/public/images/icon/eat-yuk-icon.png'),
+          sizes: [96, 128, 192, 256, 384, 512],
+        },
+      ],
+    }),
+    new WorkboxWebpackPlugin.GenerateSW({
+      swDest: './sw.bundle.js',
     }),
   ],
 };

@@ -8,6 +8,14 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  min-height: 100vh;
+  padding-top: 69px;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
 
 h1 {
@@ -79,7 +87,7 @@ app-bar {
   border-radius: 10px;
   text-align: center;
   display: block;
-  padding: 8px;
+  padding: 11px;
   margin: 10px;
   transition: all .1s;
 }
@@ -116,7 +124,6 @@ app-bar {
 
 /* Heroes */
 .heros-image {
-  margin-top: 65px;
   width: 100%;
   height: 350px;
   background-size: cover;
@@ -140,25 +147,26 @@ app-bar {
 .restaurant-list-title {
   text-align: center;
   margin: 30px 0;
+
 }
 
-restaurant-list {
+.restaurant-list {
   display: grid;
   grid-template-columns: 1fr;
   width: 100%;
 }
 
-restaurant-item {
+.restaurant-item {
   position: relative;
   margin: 0 15px 25px 15px;
   border-radius: 10px;
   border: 1px solid var(--accent);
-  box-shadow: 0px -1px 3px -2px rgba(51,51,51,1);
-  -webkit-box-shadow: 0px -1px 3px -2px rgba(51,51,51,1);
-  -moz-box-shadow: 0px -1px 3px -2px rgba(51,51,51,1);
+  box-shadow: 0 -1px 3px -2px rgba(51,51,51,1);
+  -webkit-box-shadow: 0 -1px 3px -2px rgba(51,51,51,1);
+  -moz-box-shadow: 0 -1px 3px -2px rgba(51,51,51,1);
 }
 
-restaurant-item h2 {
+.restaurant-item h2 {
   font-size: 1.2em;
 }
 
@@ -192,10 +200,20 @@ restaurant-item h2 {
   padding: 5px 10px;
   color: var(--background);
 }
+
+.content__description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; 
+          line-clamp: 6; 
+  -webkit-box-orient: vertical;
+ 
+}
 /* End Restaurant List */
 
 /* Favorite Food */
-favorite-food {
+.favorite-food-item {
   display: grid;
   margin: 20px;
 }
@@ -236,6 +254,7 @@ footer-bar {
 
 .footer__social-media img {
   width: 44px;
+  height: 44px;
   transition: all .2s;
 }
 
@@ -245,111 +264,196 @@ footer-bar {
 
 .footer__social-media a {
   margin-right: 20px;
+  height: 44px;
+  width: 44px;
+  display: inline-block;
 }
 /* End Footer */
 
-@media screen and (min-width: 768px) {
-  /* App Bar */
-  app-bar, footer-bar, .heros-text{
-    padding-left: 40px;
-    padding-right: 40px;
-  }
 
-  .header__hamburger-wrapper {
-    display: none;
-  }
-
-  .nav {
-    position: unset;
-    background-color: unset;
-    transform: translate(0, 0);
-  }
-
-  .nav__list {
-    display: flex;
-    justify-content: end;
-    margin-top: 5px;
-  }
-  /* End App Bar */
-
-  /* Restaurant List */
-  restaurant-list {
-    padding: 0 20px;
-    grid-template-columns: 1fr 1fr;
-  }
-  /* End Restaurant List */
-
-  /* Favorite Food */
-  favorite-food {
-    grid-template-columns: 1fr 1fr;
-    margin: 20px 40px 40px 40px;
-  }
-
-  favorite-food section {
-    margin: 0 20px;
-  }
-
-  .fav-food__content-wrapper {
-    display: flex;
-    align-items: center;
-  }
-
-  .fav-food__image-wrapper {
-    display: flex;
-    justify-content: end;
-  }
-
-  .fav-food__image-wrapper img {
-    margin: 0;
-  }
-  /* End Favorite Food */
-
-  /* Footer */
-  footer-bar {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer__social-media{
-    display: flex;
-    justify-content: end;
-    align-items: center;
-  }
-  /* End Footer */
+/* Detail */
+.detail__image {
+  width: 100%;
 }
 
-
-
-@media screen and (min-width: 1024px) {
-  /* Restaurant List */
-  restaurant-list {
-    padding: 0 40px;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  /* End Restaurant List */
-
-  /* Favorite Food */
-  favorite-food img {
-    width: 400px;
-  }
-  /* End Favorite Food */
+.detail__content, .detail__review, .detail__menus, .detail__input-review {
+  margin: 0 15px;
 }
 
-@media screen and (min-width: 1200px) {
-  app-bar, restaurant-list, footer-bar, .heros-text {
-    width: 1200px;
-    margin: auto;
-  }
-
-  /* Heros */
-  .heros-image {
-    min-width: 1000px;
-    background-position-y: -300px;
-  }
-  /* End Heros */
-
-  /* Footer */
-  .footer__social-media img {
-    width: 30px;
-  }
-  /* End Footer */
+.detail__description {
+  margin: 10px 0;
 }
+
+/* End Detail */
+
+/* Review */
+.review-identity {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.review-item {
+  margin-bottom: 10px;
+  background-color: var(--accent);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.review__title {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.detail__review {
+  margin-bottom: 40px;
+}
+/* End Review */
+
+/* Categories */
+.detail__header {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.detail__categories {
+  display: flex;
+  gap: 10px;
+}
+
+.detail__categories p {
+  background-color: var(--orange);
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: white;
+}
+/* End Categories */
+
+/* Menus */
+.menu-item {
+  display: inline-block;
+}
+
+.menu-item {
+  background-color: var(--accent);
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 5px 7px;
+  border-radius: 5px;
+}
+
+.detail__menus {
+  margin-top: 30px;
+}
+
+.detail__name {
+  margin-right: 20px;
+}
+
+.detail__location {
+  margin-top: 5px;
+}
+
+.menus__title {
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+/* End Menus */
+
+/* Like Button */
+#like__button, #liked__button {
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 100%;
+  background-color: var(--orange);
+  color: white;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.likeBtnContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+#like__button:hover, #liked__button:hover {
+  transform: scale(1.05);
+}
+/* End Like Button */
+
+/* Input Review */
+.detail__input-review {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.input__submit {
+  background-color: var(--orange);
+  color: white;
+  font-weight: bold;
+  font-size: 1em;
+  border: none;
+  height: 44px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.input__submit:hover {
+  transform: scale(1.01);
+}
+
+.input__title {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+.input__name, .input__review {
+  height: 44px;
+  border-radius: 5px;
+  border: 1px solid grey;
+  padding: 5px;
+}
+
+.input__review {
+  height: 100px;
+  resize: none;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* End Input Review */
+
+/* Loading */
+.load__container {
+  width: 60px;
+  height: 60px;
+  margin: 50px auto;
+}
+
+@keyframes pulse {
+  0%{
+    transform: scale(1);
+  }
+  
+  50%{
+    transform: scale(1.25);
+  }
+}
+
+.load__circle {
+  height: 100%;
+  width: 100%;
+  display: inline-block;
+  background-color: var(--orange);
+  border-radius: 100%;
+  animation: pulse 1s infinite;
+}
+
+.failed__text {
+  text-align: center;
+}
+/* End Loading */

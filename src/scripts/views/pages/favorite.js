@@ -27,7 +27,7 @@ const Favorite = {
           restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
         });
       } else {
-        restaurantsContainer.innerHTML = '<div></div><p style="margin: auto" tabindex="0">Your Data Empty</p>';
+        restaurantsContainer.innerHTML = '<div></div><p style="margin: auto" tabindex="0" class="empty-data">Your Data Empty</p>';
       }
     } catch (error) {
       restaurantsContainer.innerHTML = createErrorGetDataTemplate();

@@ -67,6 +67,7 @@ module.exports = {
         {
           src: path.resolve(__dirname, 'src/public/images/icon/eat-yuk-icon.png'),
           sizes: [96, 128, 192, 256, 384, 512],
+          purpose: 'maskable',
         },
       ],
     }),

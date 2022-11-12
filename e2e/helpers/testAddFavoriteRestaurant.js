@@ -11,7 +11,7 @@ const testAddFavoriteRestaurant = async (I) => {
   const firstTitle = await I.grabTextFrom('.content__name');
 
   I.click(firstRestaurant);
-  I.seeElement('#like__button');
+  I.waitForElement('#like__button', 5);
   I.click('#like__button');
   I.amOnPage('/#/favorite');
   I.seeElement('.restaurant-item');

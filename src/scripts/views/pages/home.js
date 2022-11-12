@@ -4,8 +4,9 @@ import '../components/restaurant';
 import RestaurantsSource from '../../data/restaurant-source';
 import {
   createErrorGetDataTemplate,
+  createFavoriteFoodItemSkeletonTemplate,
   createFavoriteFoodItemTemplate,
-  createLoadScreenTemplate,
+  createRestaurantItemSkeletonTemplate,
   createRestaurantItemTemplate,
 } from '../templates/template-creator';
 import FavoriteFood from '../../data/favorite-food-source';
@@ -14,32 +15,31 @@ const Home = {
   async render() {
     return `
       <hero-section></hero-section>
-      <div class="load__container"></div>
       <restaurant-section></restaurant-section>
       <favorite-food></favorite-food>
     `;
   },
 
   async afterRender() {
-    const loadContainer = document.querySelector('.load__container');
-    loadContainer.innerHTML = createLoadScreenTemplate();
-
     const title = document.querySelector('.restaurant-list-title');
+    title.innerText = 'Explore Restaurant';
     const titleFavoriteFood = document.querySelector('.favorite-food-title');
-    const restaurantsContainer = document.querySelector('.restaurant-list');
-    const favoriteFoodContainer = document.querySelector('.favorite-food-item');
+    titleFavoriteFood.innerText = 'Favorite Food';
 
     try {
+      const restaurantsContainer = document.querySelector('.restaurant-list');
+      restaurantsContainer.innerHTML = createRestaurantItemSkeletonTemplate(20);
       const restaurants = await RestaurantsSource.listRestaurants();
-      const food = await FavoriteFood.itemFavoriteFood();
-      loadContainer.style.display = 'none';
-      title.innerText = 'Explore Restaurant';
+      restaurantsContainer.innerHTML = '';
       restaurants.forEach((restaurant) => {
         restaurantsContainer.innerHTML += createRestaurantItemTemplate(restaurant);
       });
-      titleFavoriteFood.innerText = 'Favorite Food';
-      favoriteFoodContainer.innerHTML += createFavoriteFoodItemTemplate(food);
+      const favoriteFoodContainer = document.querySelector('.favorite-food-item');
+      favoriteFoodContainer.innerHTML = createFavoriteFoodItemSkeletonTemplate();
+      const food = await FavoriteFood.itemFavoriteFood();
+      favoriteFoodContainer.innerHTML = createFavoriteFoodItemTemplate(food);
     } catch (error) {
+      const restaurantsContainer = document.querySelector('.restaurant-list');
       restaurantsContainer.innerHTML = createErrorGetDataTemplate();
     }
   },

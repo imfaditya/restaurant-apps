@@ -22,6 +22,15 @@
   }
   /* End App Bar */
 
+  /* Heros */
+  .heros-image {
+    background-image: linear-gradient(
+        rgba(67, 67, 67, 0.5), 
+        rgba(67, 67, 67, 0.5)
+    ),  url("../public/images/heros/hero-image-large.webp");
+  }
+  /* End Heros */
+
   /* Restaurant List */
   .restaurant-list {
     padding: 0 20px;

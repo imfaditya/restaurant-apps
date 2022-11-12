@@ -13,8 +13,7 @@ Scenario('Add new review to the restaurant', async ({ I }) => {
   I.seeElement('.restaurant-item a');
   const firstRestaurant = locate('.restaurant-item a').first();
   I.click(firstRestaurant);
-
-  I.seeElement('.detail__input-review');
+  I.waitForElement('.detail__input-review', 5);
   I.fillField('.input__name', name);
   I.fillField('.input__review', review);
   I.click(locate('.input__submit'));

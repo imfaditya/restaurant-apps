@@ -2,7 +2,9 @@ const path = require('path');
 const WebpackFavicons = require('webpack-favicons');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+const ImageminMozjpeg = require('imagemin-mozjpeg');
+const ImageminPngquant = require('imagemin-pngquant');
 
 module.exports = {
   entry: {
@@ -28,6 +30,29 @@ module.exports = {
       },
     ],
   },
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 70000,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        defaultVendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
   plugins: [
     new WebpackFavicons({
       src: './src/public/images/favicon/favicon.png',
@@ -50,24 +75,15 @@ module.exports = {
         },
       ],
     }),
-    new WebpackPwaManifest({
-      publicPath: '.',
-      filename: 'app.webmanifest',
-      id: 'eat-yuk-v1',
-      start_url: './index.html',
-      name: 'Eat Yuk',
-      short_name: 'EatYuk',
-      description: 'The Best Restaurant Recommendation in Town',
-      display: 'standalone',
-      background_color: '#ffffff',
-      theme_color: '#ff7300',
-      crossorigin: 'use-credentials',
-      icons: [
-        {
-          src: path.resolve(__dirname, 'src/public/images/icon/eat-yuk-icon.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
-          purpose: 'maskable',
-        },
+    new ImageminWebpackPlugin({
+      plugins: [
+        ImageminMozjpeg({
+          quality: 50,
+          progressive: true,
+        }),
+        ImageminPngquant({
+          quality: [0.4, 0.5],
+        })
       ],
     }),
   ],

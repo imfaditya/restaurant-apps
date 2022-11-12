@@ -12,7 +12,7 @@ Scenario('Unliking one restaurants', async ({ I }) => {
   const firstFavoriteRestaurant = locate('.restaurant-item a').first();
 
   I.click(firstFavoriteRestaurant);
-  I.seeElement('#liked__button');
+  I.waitForElement('#liked__button', 5);
   I.click('#liked__button');
 
   I.amOnPage('/#/favorite');

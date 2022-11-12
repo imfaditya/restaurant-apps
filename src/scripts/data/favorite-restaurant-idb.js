@@ -14,8 +14,6 @@ const FavoriteRestaurantIdb = {
     if (id) {
       return (await dbPromise).get(OBJECT_STORE_NAME, id);
     }
-
-    return;
   },
 
   async getAllRestaurants() {
@@ -25,8 +23,6 @@ const FavoriteRestaurantIdb = {
   async putRestaurant(restaurant) {
     if (restaurant.hasOwnProperty('id')) {
       return (await dbPromise).put(OBJECT_STORE_NAME, restaurant);
-    } else {
-      return;
     }
   },
 

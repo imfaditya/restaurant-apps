@@ -4,7 +4,7 @@ const createRestaurantItemTemplate = (restaurant) => `
   <div class="restaurant-item">
     <a class="restaurant__link" href="/#/detail/${restaurant.id}">  
       <div class="restaurant__image-wrapper" aria-hidden="true">
-          <img class="restaurant__image" src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name} restaurant">
+          <img class="lazyload restaurant__image" data-src="${CONFIG.BASE_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name} restaurant">
         </div>
         <div class="restaurant__content">
           <p class="content__location" aria-label="location ${restaurant.city}">${restaurant.city}</p>
@@ -84,6 +84,19 @@ const createFavoriteFoodItemTemplate = (food) => `
   </section>
 `;
 
+const createFavoriteFoodItemSkeletonTemplate = () => `
+  <section class="fav-food__image-wrapper">
+    <img src="./images/icon/skeleton.jpeg" alt="loading">
+  </section>
+  <section class="fav-food__content-wrapper">
+  <div>
+    <h3 tabindex="0" class="skeleton food__title"></h3>
+    <p tabindex="0" class="skeleton food__type"></p>
+    <p tabindex="0" class="skeleton food__area"></p>
+  </div>
+  </section>
+`;
+
 const createLikeButtonTemplate = () => `
   <button id="like__button" aria-label="like this restaurant">♡</button>
 `;
@@ -99,6 +112,27 @@ const createLoadScreenTemplate = () => `
 const createErrorGetDataTemplate = () => `
   <h2 class="failed__text">Failed To Get Data <br>:(</h2>
 `;
+
+const createRestaurantItemSkeletonTemplate = (many) => {
+  let createdSkeleton = '';
+  for (let i = 1; i <= many; i++) {
+    createdSkeleton += `
+      <div class="restaurant-item">
+        <div class="restaurant__image-wrapper">
+          <img class="lazyload restaurant__image skeleton" src="./images/icon/skeleton.jpeg" alt="loading">
+        </div>
+        <div class="restaurant__content">
+          <p class="content__location skeleton" aria-label="loading"></p>
+          <h3 class="content__name skeleton"></h3>
+          <p class="content__rating skeleton"></p>
+          <p class="content__description skeleton"></p>
+        </div>
+      </div>
+    `;
+  }
+  return createdSkeleton;
+};
+
 export {
   createFavoriteFoodItemTemplate,
   createRestaurantItemTemplate,
@@ -108,4 +142,6 @@ export {
   createUnlikeButtonTemplate,
   createLoadScreenTemplate,
   createErrorGetDataTemplate,
+  createRestaurantItemSkeletonTemplate,
+  createFavoriteFoodItemSkeletonTemplate,
 };

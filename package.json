@@ -1,7 +1,7 @@
 {
   "name": "restaurant-apps",
   "version": "1.0.0",
-  "description": "",
+  "description": "provide recomendation of a restaurant in town",
   "main": "index.js",
   "scripts": {
     "start-dev": "webpack-dev-server --config webpack.dev.js",
@@ -14,7 +14,7 @@
     "build-image": "node sharp.js"
   },
   "keywords": [],
-  "author": "your_name <your.email@domain.com>",
+  "author": "Imam Faraz Aditya <imamaditya2211@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.18.5",

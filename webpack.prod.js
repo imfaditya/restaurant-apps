@@ -1,9 +1,9 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
-const common = require('./webpack.common');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin');
+const common = require('./webpack.common');
 
 module.exports = merge(common, {
   mode: 'production',
@@ -25,7 +25,10 @@ module.exports = merge(common, {
     ],
   },
   plugins: [
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
     new WebpackPwaManifest({
       publicPath: '.',
       filename: 'app.webmanifest',
@@ -50,11 +53,11 @@ module.exports = merge(common, {
           destination: path.join('images/icon'),
           sizes: [96, 128, 144, 192, 256, 384, 512],
           purpose: 'any',
-        }
+        },
       ],
     }),
     new WorkboxWebpackPlugin.GenerateSW({
       swDest: './sw.bundle.js',
     }),
-  ]
+  ],
 });
